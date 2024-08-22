@@ -4,7 +4,7 @@ use super::{
 };
 use revm_interpreter::primitives::{AccountInfo, U256};
 use revm_precompile::HashMap;
-use serde::Deserialize;
+use serde::Serialize;
 
 /// Account information focused on creating of database changesets
 /// and Reverts.
@@ -15,7 +15,7 @@ use serde::Deserialize;
 /// Same thing for storage with original value.
 ///
 /// On selfdestruct storage original value is ignored.
-#[derive(Clone, Debug, PartialEq, Eq, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize)]
 pub struct BundleAccount {
     pub info: Option<AccountInfo>,
     pub original_info: Option<AccountInfo>,

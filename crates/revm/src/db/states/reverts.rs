@@ -4,11 +4,11 @@ use super::{
 };
 use core::ops::{Deref, DerefMut};
 use revm_interpreter::primitives::{AccountInfo, Address, HashMap, U256};
-use serde::Deserialize;
+use serde::Serialize;
 use std::vec::Vec;
 
 /// Contains reverts of multiple account in multiple transitions (Transitions as a block).
-#[derive(Clone, Debug, Default, PartialEq, Eq, Deserialize)]
+#[derive(Clone, Debug, Default, PartialEq, Eq, Serialize)]
 pub struct Reverts(Vec<Vec<(Address, AccountRevert)>>);
 
 impl Deref for Reverts {
@@ -80,7 +80,7 @@ impl Reverts {
 ///
 /// AccountRevert is structured in this way as we need to save it inside database.
 /// And we need to be able to read it from database.
-#[derive(Clone, Default, Debug, PartialEq, Eq, Deserialize)]
+#[derive(Clone, Default, Debug, PartialEq, Eq, Serialize)]
 pub struct AccountRevert {
     pub account: AccountInfoRevert,
     pub storage: HashMap<U256, RevertToSlot>,
@@ -182,7 +182,7 @@ impl AccountRevert {
 
 /// Depending on previous state of account info this
 /// will tell us what to do on revert.
-#[derive(Clone, Default, Debug, PartialEq, Eq, Hash, Deserialize)]
+#[derive(Clone, Default, Debug, PartialEq, Eq, Hash, Serialize)]
 pub enum AccountInfoRevert {
     #[default]
     /// Nothing changed
@@ -200,7 +200,7 @@ pub enum AccountInfoRevert {
 ///
 /// Note: It is completely different state if Storage is Zero or Some or if Storage was
 /// Destroyed. Because if it is destroyed, previous values can be found in database or it can be zero.
-#[derive(Clone, Debug, Copy, PartialEq, Eq, Hash, Deserialize)]
+#[derive(Clone, Debug, Copy, PartialEq, Eq, Hash, Serialize)]
 pub enum RevertToSlot {
     Some(U256),
     Destroyed,
