@@ -32,10 +32,7 @@ cfg-if = "1.0"
 dyn-clone = "1.0"
 
 # Optional
-serde = { version = "1.0", default-features = false, features = [
-    "derive",
-    "rc",
-], optional = true }
+serde = { version = "1.0", default-features = false, features = ["derive", "rc"], optional = true }
 serde_json = { version = "1.0", default-features = false, features = [
     "alloc",
 ], optional = true }
@@ -71,7 +68,7 @@ alloy-provider = { git = "https://github.com/alloy-rs/alloy.git", rev = "44b8a6d
 alloy-transport-http = { git = "https://github.com/alloy-rs/alloy.git", rev = "44b8a6d" }
 
 [features]
-default = ["std", "c-kzg", "secp256k1", "portable", "blst"]
+default = ["std", "c-kzg", "secp256k1", "portable", "blst", "serde"]
 std = [
     "serde?/std",
     "serde_json?/std",

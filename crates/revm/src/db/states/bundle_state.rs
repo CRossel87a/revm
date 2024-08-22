@@ -9,6 +9,7 @@ use revm_interpreter::primitives::{
     hash_map::{self, Entry},
     AccountInfo, Address, Bytecode, HashMap, HashSet, B256, KECCAK_EMPTY, U256,
 };
+use serde::Deserialize;
 use std::{
     collections::{BTreeMap, BTreeSet},
     vec::Vec,
@@ -258,7 +259,7 @@ impl BundleRetention {
 ///
 /// Reverts and created when TransitionState is applied to BundleState.
 /// And can be used to revert BundleState to the state before transition.
-#[derive(Default, Clone, Debug, PartialEq, Eq)]
+#[derive(Default, Clone, Debug, PartialEq, Eq, Deserialize)]
 pub struct BundleState {
     /// Account state.
     pub state: HashMap<Address, BundleAccount>,

@@ -1,7 +1,9 @@
+use serde::Deserialize;
+
 /// After account get loaded from database it can be in a lot of different states
 /// while we execute multiple transaction and even blocks over account that is in memory.
 /// This structure models all possible states that account can be in.
-#[derive(Clone, Copy, Default, Debug, PartialEq, Eq, Hash)]
+#[derive(Clone, Copy, Default, Debug, PartialEq, Eq, Hash, Deserialize)]
 pub enum AccountStatus {
     #[default]
     LoadedNotExisting,
